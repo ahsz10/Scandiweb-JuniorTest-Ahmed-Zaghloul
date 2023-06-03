@@ -107,6 +107,7 @@
 
             // return self::$pdo->lastInsertId();
             echo '<br><strong>in save product and the last id is ->>>>>>>>>>>>>>>>> </strong>'.$this->connectDB()->lastInsertId().'        ';
+            echo '<br><strong>in save product and max id is ->>>>>>>>>>>>>>>>> </strong>'.$lastIndex.'        ';
             // return $this->connectDB()->lastInsertId();
             return $lastIndex;
         }

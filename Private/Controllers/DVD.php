@@ -35,6 +35,8 @@
 
             // echo "<br>the sql result in table products is ".$result."<br>";
             echo "<br>the sql max index in table products is ".$max_id."<br>";
+            echo "<br>the the incoming id ".$id."<br>";
+
             echo "<br>the last index in table products from dvd ".$this->connectDB()->lastInsertId()."<br>";
             
             
@@ -45,7 +47,7 @@
             echo '<br> <strong> id coming from last index is '.$id.'</strong><br>';
             $insert= $this->connectDB()->prepare($sql);
             // $insert->bindParam(':id',$id);
-            $insert->bindParam(':id',$max_id);
+            $insert->bindParam(':id',$id);
             $insert->bindParam(':size',$this->size);
             echo '<br><br><br><br><br><br>';
             $insert->execute(); 
