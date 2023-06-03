@@ -14,8 +14,8 @@ if (isset($_POST["delete"]) && isset($_POST["checked"])) {
     }
     
    //Redirect to product-list page
-   header('index.php');
+   header('Location: ../../index.php');
 } else {
-    header('../../index.php');
+    header('Location: ../../index.php');
 }
 ?>
