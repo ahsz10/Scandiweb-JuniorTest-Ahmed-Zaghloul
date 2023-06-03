@@ -47,10 +47,3 @@ $(document).ready(function() {
 
 
 
-// console.log("emptyError-> "+ emptyError) 
-// console.log("skuExisting-> " + skuExisting)
-// console.log("invalidSKU-> " + invalidSKU)
-// console.log("invalidName-> " + invalidName)
-// console.log("invalidPrice-> " + invalidPrice)
-// console.log("invalidAttribute-> " + invalidAttribute)
-// console.log("submitFlag-> " + submitFlag)
