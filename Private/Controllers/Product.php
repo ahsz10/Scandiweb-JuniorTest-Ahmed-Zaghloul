@@ -1,5 +1,4 @@
 <?php
-    // require '../Database/Connect_DB.php'; //working
     abstract class Product {
         private $SKU;
         private $name;
