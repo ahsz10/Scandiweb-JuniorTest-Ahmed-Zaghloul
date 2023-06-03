@@ -38,32 +38,13 @@ $(document).ready(function() {
             // alert("stopped");
             if (responseText.search('submitFlag = "1"') > 0) {
                 // alert("stoped in submission flag");
-                window.location.href= "product-list.php"
+                // window.location.href= "product-list.php"
+                window.location.href= "index.php"
             }
         });
     });
 });
 
-// $(document).ready(function() {
-//     $("#delete-form").submit(function(event) {
-//         $("#deletebtn").val("Please wait ...");
-//         $("#deletebtn").attr("disabled", true);
-//         event.preventDefault();
-//         var deleteCheckbox = $(".delete-checkbox").val();
-//         var deletebtn = $("#delete-btn").val();
-//         // $(".errorMessage").load("Private/Operations/deleteProduct.php", {
-//         $(".errorMessage").load("deleteProduct.php", {
-//             deleteCheckbox: deleteCheckbox,
-//             deletebtn: deletebtn
-//         }, function (responseText){
-//             // alert("stopped");
-//             if (responseText.search('submitFlag = "1"') > 0) {
-//                 // alert("stoped in submission flag");
-//                 window.location.href= "product-list.php"
-//             }
-//         });
-//     });
-// });
 
 
 // console.log("emptyError-> "+ emptyError) 

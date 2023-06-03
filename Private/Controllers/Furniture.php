@@ -1,5 +1,4 @@
 <?php 
-  
   class Furniture extends Product{
 
     private $height;
@@ -45,7 +44,9 @@
     protected function saveProductAttributes($id){
       $sql = "insert into furniture (id, height, width, length) 
         values(:id,:height, :width, :length)";
-      $insert= self::$pdo->prepare($sql);
+      // $insert= self::$pdo->prepare($sql);
+      echo 'in furniture save attributes';
+      $insert= $this->connectDB()->prepare($sql);
 
       $insert->bindParam(':id',$id);
       $insert->bindParam(':height',$this->height);

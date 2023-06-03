@@ -105,7 +105,8 @@
                     <div class="col-sm-10 ">
                             <button type="submit" name ="save" id="save"  class="btn save-button btn-default btn-success"  >Save</button>
                         </form>
-                        <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./product-list.php'" >Cancel</button>
+                        <!-- <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./product-list.php'" >Cancel</button> -->
+                        <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./index.php'" >Cancel</button>
                     </div>
                 </div>
         </center>

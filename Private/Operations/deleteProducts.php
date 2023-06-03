@@ -1,6 +1,7 @@
 <?php
 
 include 'autoloader.php';
+// require '../Controllers/ProductController.php';
 
 // Check if mass delete button pressed and there are checked products (at least one check box checked)
 if (isset($_POST["delete"]) && isset($_POST["checked"])) {
@@ -14,9 +15,9 @@ if (isset($_POST["delete"]) && isset($_POST["checked"])) {
     }
     
    //Redirect to product-list page
-   header('../../product-list.php');
+   header('../../index.php');
    exit();
 } else {
-    header('../../product-list.php');
+    header('../../index.php');
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-
     class Book extends Product{
         private $weight;
 
@@ -21,7 +20,9 @@
         // Method to insert new Book attributes to the database 
         protected function saveProductAttributes($id){            
             $sql = "insert into book (id, weight) values(:id, :weight)";
-            $insert= self::$pdo->prepare($sql);
+            // $insert= self::$pdo->prepare($sql);
+            echo 'in book save attributes';
+            $insert= $this->connectDB()->prepare($sql);
             $insert->bindParam(':id',$id);
             $insert->bindParam(':weight',$this->weight);
             $insert->execute();

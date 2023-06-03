@@ -1,11 +1,12 @@
 <?php
-require 'autoloader.php';
+include 'autoloader.php';
+// require '../Controllers/ProductController.php';
 
 
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-error_reporting(0);
+// error_reporting(0);
 
 // Method to check if the input is valid and not empty
 function isEmpty($input){
@@ -90,17 +91,17 @@ if ((isset($_POST['save']))) {
         $attribute = [$_POST["height"], $_POST["width"], $_POST["length"]];
     }
 
-    // echo $SKU;
-    // echo $name;
-    // echo $price;
-    // echo $type;
-    // echo $attribute ."<br/>";
-    // var_dump($_POST);
+    echo $SKU;
+    echo $name;
+    echo $price;
+    echo $type;
+    echo $attribute ."<br/>";
+    var_dump($_POST);
 
     // Default input array
     $defaultInput = [$SKU, $name, $price, $type];
 
-    // echo "<br/> default input is ".$defaultInput ;
+    echo "<br/> default input is ".$defaultInput ;
 
     // Error checking array
     $errors = [
@@ -113,114 +114,114 @@ if ((isset($_POST['save']))) {
     ];
     // Successful submission variable
     $submitFlag = false;
-    // echo "<br> after vardump " .$errors["emptyError"];
-    // foreach ($defaultInput as $key => $value) {
-    //         echo "<br/>".$key."-> ".$value;
-    //     }
+    echo "<br> after vardump " .$errors["emptyError"];
+    foreach ($defaultInput as $key => $value) {
+            echo "<br/>".$key."-> ".$value;
+        }
 
-    // echo"<br/>/////////////////////////////////";
+    echo"<br/>/////////////////////////////////";
 
-    // foreach ($defaultInput as $key => $value) {
-    //     echo" in loop";
-    //     if (empty($value) && !is_numeric($value)) {
-    //         echo "<br/>". $key ."-> ". $value ." is true";
-    //     }
+    foreach ($defaultInput as $key => $value) {
+        echo" in loop";
+        if (empty($value) && !is_numeric($value)) {
+            echo "<br/>". $key ."-> ". $value ." is true";
+        }
         
-    // }
+    }
 
-    // echo "<br> loop end <br/>";
-    // echo "<br> after vardump " .$errors["emptyError"];
+    echo "<br> loop end <br/>";
+    echo "<br> after vardump " .$errors["emptyError"];
 
     // Check if any of the default values is empty
     if(isEmpty($defaultInput)){
         $errors["emptyError"] = true;
     }
-    // echo "<br> after default input check " .$errors["emptyError"];
+    echo "<br> after default input check " .$errors["emptyError"];
 
     // Check if any of the attributes is empty
     if(isEmpty($attribute)){
         $errors["emptyError"] = true;
     }
-    // echo "<br> after attr check " .$errors["emptyError"];
-    // echo "<br>" .$errors["emptyError"];
+    echo "<br> after attr check " .$errors["emptyError"];
+    echo "<br>" .$errors["emptyError"];
     
     //Check if SKU pattern is valid
     if (checkPattern($SKU, "SKU")) {
         $errors["invalidSku"] = true;
     }
-    // echo "<br> invalid sku check " .$errors["invalidSku"];
+    echo "<br> invalid sku check " .$errors["invalidSku"];
 
     //Check if name pattern is valid
     if (checkPattern($name, "name")) {
         $errors["invalidName"] = true;
     }
 
-    // echo "<br> invalidName check " .$errors["invalidName"];
+    echo "<br> invalidName check " .$errors["invalidName"];
 
     //Check if price is float and greater than or equal zero
     if(isFloat($price)) {
         $errors["invalidPrice"] = true;
     }
-    // echo "<br> <br>price -> ". $price;
-    // echo "<br> invalidPrice check " .$errors["invalidPrice"]."<br><br>";
+    echo "<br> <br>price -> ". $price;
+    echo "<br> invalidPrice check " .$errors["invalidPrice"]."<br><br>";
     
     //Check if type-specific attribute(s) value(s) is float and greater than or equal zero
     if (isFloat($attribute)) {
         $errors["invalidAttribute"] = true;
     }
-    // echo "<br> attribute -> ". $attribute;
-    // echo "<br> #### invalidAttribute check is " .$errors["invalidAttribute"]."<br><br>";
+    echo "<br> attribute -> ". $attribute;
+    echo "<br> #### invalidAttribute check is " .$errors["invalidAttribute"]."<br><br>";
     
     $errorFlag = checkErrorsArray( $errors);
 
-    // $errorFlag = false;
-    // foreach ($errors as $key => $value) {
-    //     if ($value === true ) {
-    //         $errorFlag = true;
-    //         echo "<br> Error Values -> " .$key." -> ".$value;
-    //         break;
-    //     }
-    // }
-    // echo "<br> errors flag is ". $errorFlag;
+    $errorFlag = false;
+    foreach ($errors as $key => $value) {
+        if ($value === true ) {
+            $errorFlag = true;
+            echo "<br> Error Values -> " .$key." -> ".$value;
+            break;
+        }
+    }
+    echo "<br> errors flag is ". $errorFlag;
     
     // Check if there are any errors 
     if (!$errorFlag) {
-        // echo "<br> in product init condition";
+        echo "<br> in product init condition";
         //Initialization the ProductController to add product 
         $newProduct = new ProductController();
 
-        // echo "<br> after creating new product";
+        echo "<br> after creating new product";
         //Check if SKU is duplicated
         $errors["skuExisting"] = $newProduct->skuExists($SKU);
 
-        // echo "<br> sku in db check ".$errors["skuExisting"];
+        echo "<br> sku in db check ".$errors["skuExisting"];
         $errorFlag = checkErrorsArray( $errors);
 
         // Recheck if there are any errors 
         if (!$errorFlag){
-            // echo "<br> in second error check condition ";
+            echo "<br> in second error check condition ";
 
             //Save submission success or failure status to use for redirection in Ajax
             // $submitFlag = ($newProduct->addProduct($SKU, $name, $price, $type, $attribute));
-            // echo "<br> after submit flag and flag  -> ".$submitFlag;
+            echo "<br> after submit flag and flag  -> ".$submitFlag;
 
             //Executing the add product
             $newProduct->addProduct($SKU, $name, $price, $type, $attribute);
             $submitFlag= true;
-            // echo "<br> after adding product to new product";
+            echo "<br> after adding product to new product";
 
         }
     } 
 
 
-    // echo "<br> Error Values Errors array   ";
-    // foreach ($errors as $key => $value) {
-    //     if ($value === true ) {
+    echo "<br> Error Values Errors array   ";
+    foreach ($errors as $key => $value) {
+        if ($value === true ) {
             
-    //         echo "<br> Error Values -> " .$key." -> ".$value;
+            echo "<br> Error Values -> " .$key." -> ".$value;
             
-    //     }
-    // }
+        }
+    }
 
 }
 ?>

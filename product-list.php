@@ -98,7 +98,7 @@
         <section class="cards my-3">
             <div class="row">
                 <!-- for -->
-                <?php foreach ($products as $product): ?>
+                <!-- <?php foreach ($products as $product): ?> -->
                     <div class="col-lg-3 col-md-5 col-sm-6 pb-3">
                         <div class="card" >
                             <div class="card-body">
