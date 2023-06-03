@@ -3,15 +3,15 @@
   // require 'Private/Operations/autoloader.php';
   // require 'Private/Database/Connect_DB.php';
   // require 'Private/Controllers/ProductController.php';  //working
-  require 'Private/View/ProductsView.php';  //working
+  // require 'Private/View/ProductsView.php';  //working
   
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
   // error_reporting(0);
   include("./assets/pageTitleView.php"); 
 
-  $getProducts = new ProductsView();
-  $products = $getProducts->displayAllProducts();
+  // $getProducts = new ProductsView();
+  // $products = $getProducts->displayAllProducts();
 
   // $getProducts = new ProductController();
   // $products = $getProducts->displayAllProducts();

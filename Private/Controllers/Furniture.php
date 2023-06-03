@@ -45,7 +45,7 @@
       $sql = "insert into furniture (id, height, width, length) 
         values(:id,:height, :width, :length)";
       // $insert= self::$pdo->prepare($sql);
-      echo 'in furniture save attributes';
+      // echo 'in furniture save attributes';
       $insert= $this->connectDB()->prepare($sql);
 
       $insert->bindParam(':id',$id);

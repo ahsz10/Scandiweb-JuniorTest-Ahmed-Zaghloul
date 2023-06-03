@@ -1,29 +1,15 @@
 
 <?php
-  // include 'Private/Operations/autoloader.php';
-  // require 'Private/Database/Connect_DB.php';
   require 'Private/Controllers/ProductController.php';  //working
-  // require 'Private/Controllers/Product.php';  //working
-  // require 'Private/View/ProductsView.php';  //working
-  echo 'in index first page';
+  
+  // echo 'in index first page';
   error_reporting(E_ALL);
   ini_set('display_errors', 1);
   // error_reporting(0);
   include("./assets/pageTitleView.php"); 
 
-  // $getProducts = new ProductsView();
-  // $products = $getProducts->displayAllProducts();
-
   $getProducts = new ProductController();
   $products = $getProducts->displayAllProducts();
-  // $getProducts->displayAllProducts();
-  
-  // $db = new PDO('mysql:host=localhost;dbname=scandiweb_test', 'root', '');
-  // $sql = "SELECT p.*, COALESCE(concat ('Weight: ', b.weight, ' KG'), concat ('Size: ', d.size, ' MB'), concat ('Dimensions: ', f.height, 'x', f.width, 'x', f.length, ' CM')) AS attributes FROM products p LEFT JOIN book b ON p.id = b.id LEFT JOIN dvd d ON p.id = d.id LEFT JOIN furniture f ON p.id=f.id ORDER BY p.id";
-  // $query = $db->query($sql);
-  // // $products = $query->fetchAll(PDO::FETCH_ASSOC);
-  // $products = $query->fetchAll();
-
   
 ?>
 
@@ -95,16 +81,4 @@
     <?php include ("./assets/footer.php"); ?>
   </body>
 </html>
-
-
-<!-- <script>
-  // var checkboxes = document.getElementsByClassName('delete-checkbox');
-  //   var count = 0;
-  //   for (var i = 0; i < checkboxes.length; i++) {
-  //     if (checkboxes[i].checked) {
-  //       count++;
-  //     }
-  //   }
-</script> -->
-
 

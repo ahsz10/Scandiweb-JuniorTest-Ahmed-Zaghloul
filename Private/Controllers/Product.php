@@ -106,8 +106,8 @@
             $lastIndex = $index->fetchColumn();
 
             // return self::$pdo->lastInsertId();
-            echo '<br><strong>in save product and the last id is ->>>>>>>>>>>>>>>>> </strong>'.$this->connectDB()->lastInsertId().'        ';
-            echo '<br><strong>in save product and max id is ->>>>>>>>>>>>>>>>> </strong>'.$lastIndex.'        ';
+            // echo '<br><strong>in save product and the last id is ->>>>>>>>>>>>>>>>> </strong>'.$this->connectDB()->lastInsertId().'        ';
+            // echo '<br><strong>in save product and max id is ->>>>>>>>>>>>>>>>> </strong>'.$lastIndex.'        ';
             // return $this->connectDB()->lastInsertId();
             return $lastIndex;
         }
@@ -118,14 +118,14 @@
         public function getProducts(){
             // $db = new PDO('mysql:host=localhost;dbname=scandiweb_test', 'root', '');
             //USe COALESCE() function to return only the type-specific attribute with a value (not null)
-            echo "in get products <br>";
+            // echo "in get products <br>";
             $sql = "SELECT p.*, COALESCE(concat ('Weight: ', b.weight, ' KG'), concat ('Size: ', d.size, ' MB'), concat ('Dimensions: ', f.height, 'x', f.width, 'x', f.length, ' CM')) AS attributes FROM products p LEFT JOIN book b ON p.id = b.id LEFT JOIN dvd d ON p.id = d.id LEFT JOIN furniture f ON p.id=f.id ORDER BY p.id";
-            echo "after sql <br>";
+            // echo "after sql <br>";
             // $stmt = $db->query($sql);
             $stmt = $this->connectDB()->query($sql);
-            echo "after query <br>";
+            // echo "after query <br>";
             $products = $stmt->fetchAll();
-            echo "after fetch <br>";
+            // echo "after fetch <br>";
 
             return $products;
         }

@@ -1,9 +1,5 @@
 <?php
 include 'Product.php'; //working
-// include 'DVD.php';
-// include 'Book.php';
-// include 'Furniture.php';
-// include '../Operations/autoloader.php';
     class ProductController extends Product{
 
         public function __construct( ) { 
@@ -13,7 +9,8 @@ include 'Product.php'; //working
         // Method to add a new product to the database
         public function addProduct ($SKU, $name, $price, $type, $attributes){
             // Check if the SKU already exists in database
-            echo "in add product controller";
+
+            // echo "in add product controller";
             if (!$this->skuExists($SKU)) {
                 // echo "product already exists";
                 // Initialization the product type class and sending the parameters in the constructor
@@ -36,7 +33,7 @@ include 'Product.php'; //working
 
         // Method to display all products in the database
         public function displayAllProducts(){
-            echo "in diplay all products <br>";
+            // echo "in diplay all products <br>";
             //Using method from Product class
             $products = $this->getProducts();
             return $products;
