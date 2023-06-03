@@ -43,18 +43,14 @@
     // Method to insert new Furniture attributes to the database 
     protected function saveProductAttributes($id){
       $sql = "insert into furniture (id, height, width, length) 
-        values(:id,:height, :width, :length)";
-      // $insert= self::$pdo->prepare($sql);
-      // echo 'in furniture save attributes';
+              values(:id,:height, :width, :length)";
       $insert= $this->connectDB()->prepare($sql);
-
       $insert->bindParam(':id',$id);
       $insert->bindParam(':height',$this->height);
       $insert->bindParam(':width',$this->width);
       $insert->bindParam(':length',$this->length);
       
       $insert->execute();
-
     }
    
   }

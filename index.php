@@ -1,16 +1,12 @@
 
 <?php
-  require 'Private/Controllers/ProductController.php';  //working
-  
-  // echo 'in index first page';
-  error_reporting(E_ALL);
-  ini_set('display_errors', 1);
-  // error_reporting(0);
+  require 'Private/Controllers/ProductController.php';  
   include("./assets/pageTitleView.php"); 
-
+  // error_reporting(E_ALL);
+  // ini_set('display_errors', 1);
+  error_reporting(0);
   $getProducts = new ProductController();
   $products = $getProducts->displayAllProducts();
-  
 ?>
 
 <!doctype html>
@@ -43,7 +39,7 @@
               <li class="navbar-form navbar-left">
                 <button class="btn btn-default add-button btn-primary" id="ADD" onclick="location.href='./add-product.php'">ADD</button>
               </li>
-              <!--  -->
+            
               <form action="Private/Operations/deleteProducts.php" method="POST" id="delete-form" class="navbar-form navbar-left">
                 <button name="delete" id="deletebtn" class="btn btn-default delete-button btn-danger">MASS DELETE</button>
               </form>
@@ -53,7 +49,6 @@
     </nav>
 
     <div class="body2">
-      <!-- <button class="btn btn-default add-button btn-primary" id="ADD" onclick="location.href='./add-product.php'">ADD</button> -->
       <div class="container-fluid " >
         <section class="cards my-3">
             <div class="row">
@@ -76,8 +71,6 @@
         </section>
       </div>
     </div>
-
-   
     <?php include ("./assets/footer.php"); ?>
   </body>
 </html>

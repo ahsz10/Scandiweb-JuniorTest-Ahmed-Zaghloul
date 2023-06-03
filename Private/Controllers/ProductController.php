@@ -1,18 +1,13 @@
 <?php
-include 'Product.php'; //working
+include 'Product.php'; 
     class ProductController extends Product{
 
-        public function __construct( ) { 
-            // echo"ahmed is here";
-        }
+        public function __construct( ) {}
 
         // Method to add a new product to the database
         public function addProduct ($SKU, $name, $price, $type, $attributes){
             // Check if the SKU already exists in database
-
-            // echo "in add product controller";
             if (!$this->skuExists($SKU)) {
-                // echo "product already exists";
                 // Initialization the product type class and sending the parameters in the constructor
                 $className = $type;
                 $newProduct = new $className($SKU, $name, $price, $type, $attributes);
@@ -33,7 +28,6 @@ include 'Product.php'; //working
 
         // Method to display all products in the database
         public function displayAllProducts(){
-            // echo "in diplay all products <br>";
             //Using method from Product class
             $products = $this->getProducts();
             return $products;

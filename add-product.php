@@ -12,7 +12,6 @@
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
     <link rel="stylesheet" href="./assets/style.css">
   </head>
     <body>
@@ -102,17 +101,15 @@
                     <hr>
                     
                     <div class="form-group">
-                    <div class="col-sm-10 ">
+                        <div class="col-sm-10 ">
                             <button type="submit" name ="save" id="save"  class="btn save-button btn-default btn-success"  >Save</button>
-                        </form>
-                        <!-- <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./product-list.php'" >Cancel</button> -->
-                        <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./index.php'" >Cancel</button>
+                            </form>
+                            <!-- <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./product-list.php'" >Cancel</button> -->
+                            <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./index.php'" >Cancel</button>
+                        </div>
                     </div>
-                </div>
-        </center>
-            <!-- <button type="button"name ="cancel" id="cancel" class="btn cancel-button btn-default btn-danger" onclick="location.href='./product-list.php'" >CANCEL</button> -->
-            
-
+                </center>
+           
             </div>
         </div>
 

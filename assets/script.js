@@ -10,8 +10,6 @@ $(document).ready(function () {
 //Retrieving errors using Ajax method to display them to the user without reloading the page
 $(document).ready(function() {
     $("#product_form").submit(function(event) {
-        // $("#save").val("Please wait ...");
-        // $("#save").attr("disabled", true);
         event.preventDefault();
         var sku = $("#sku").val();
         var name = $("#name").val();
@@ -35,10 +33,7 @@ $(document).ready(function() {
             length: length,
             save: save
         }, function (responseText){
-            // alert("stopped");
             if (responseText.search('submitFlag = "1"') > 0) {
-                // alert("stoped in submission flag");
-                // window.location.href= "product-list.php"
                 window.location.href= "index.php"
             }
         });

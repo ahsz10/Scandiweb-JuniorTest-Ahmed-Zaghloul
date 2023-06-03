@@ -24,25 +24,12 @@ body{
 
 .form-control{
   width: 80%;
-  
   background-color: #eae6e6f4;
-
-}
-
-.form-error{
-  color:red;
-}
-
-.input-error{
-  box-shadow: 0 0 5px red;
 }
 
 .body{
-  /* border: 5px solid black; */
   align-items: center;
   padding-left: 20%;
-  /* padding-left: auto; */
-
 }
 
 .body2 p{
@@ -52,12 +39,4 @@ body{
 .body2 .card{
   margin-bottom: 1rem;
   border: 0.2rem solid black;
-}
-
-/* .delete-checkbox{
-  margin: 5px 5px 5px 5px;
-} */
-
-.line{
-  border: 0.1rem solid black;
 }

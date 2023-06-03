@@ -1,10 +1,9 @@
 <?php
 include 'autoloader.php';
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-// error_reporting(0);
+// error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+error_reporting(0);
 
 // Method to check if the input is valid and not empty
 function isEmpty($input){
@@ -40,21 +39,17 @@ function checkPattern($inputPattern, $type){
     }
 }
 
-// 
+// Method to check that price and attributes are numbers
 function isFloat($input){
-    // echo "<br> IN ISFLOAT  ";
     $checkResult = false;
     if(is_array($input)){
         foreach ($input as $key => $value) {
-            // echo "<br> IN ISFLOAT ARRAY var is ".$key."->".$value;
             if (!is_numeric($value) || $value <= 0) {
-                // echo "<br> IN ISFLOAT ARRAY var is ".$key."->".$value;
                 $checkResult = true;
                 break;
             }
         }
     }else if(!is_numeric($input) || $input <= 0) {
-        // echo "<br> IN ISFLOAT var is ".$input;
         $checkResult = true;
     } 
     return $checkResult;
@@ -64,7 +59,6 @@ function checkErrorsArray(array $errors) {
     foreach ($errors as $key => $value) {
         if ($value === true ) {
             return true;
-            // echo "<br> Error Values -> " .$key." -> ".$value;
             break;
         }
     }
@@ -78,7 +72,6 @@ if ((isset($_POST['save']))) {
     $name = $_POST["name"];
     $price = $_POST["price"];
     $type = $_POST["productType"];
-    // var_dump($_POST);
     $attribute;
     // Assign submitted not null attribute(s)  
     if ($_POST['size'] != NULL) {
@@ -89,17 +82,8 @@ if ((isset($_POST['save']))) {
         $attribute = [$_POST["height"], $_POST["width"], $_POST["length"]];
     }
 
-    // echo $SKU;
-    // echo $name;
-    // echo $price;
-    // echo $type;
-    // echo $attribute ."<br/>";
-    // var_dump($_POST);
-
     // Default input array
     $defaultInput = [$SKU, $name, $price, $type];
-
-    // echo "<br/> default input is ".$defaultInput ;
 
     // Error checking array
     $errors = [
@@ -113,120 +97,57 @@ if ((isset($_POST['save']))) {
     // Successful submission variable
     $submitFlag = false;
 
-    // echo "<br> after vardump " .$errors["emptyError"];
-    // foreach ($defaultInput as $key => $value) {
-    //     echo "<br/>".$key."-> ".$value;
-    // }
-
-    // echo"<br/>/////////////////////////////////";
-
-    // foreach ($defaultInput as $key => $value) {
-    //     echo" in loop";
-    //     if (empty($value) && !is_numeric($value)) {
-    //         echo "<br/>". $key ."-> ". $value ." is true";
-    //     }
-    // }
-
-    // echo "<br> loop end <br/>";
-    // echo "<br> after vardump " .$errors["emptyError"];
-
     // Check if any of the default values is empty
     if(isEmpty($defaultInput)){
         $errors["emptyError"] = true;
     }
-    // echo "<br> after default input check " .$errors["emptyError"];
 
     // Check if any of the attributes is empty
     if(isEmpty($attribute)){
         $errors["emptyError"] = true;
     }
-    // echo "<br> after attr check " .$errors["emptyError"];
-    // echo "<br>" .$errors["emptyError"];
     
     //Check if SKU pattern is valid
     if (checkPattern($SKU, "SKU")) {
         $errors["invalidSku"] = true;
     }
-    // echo "<br> invalid sku check " .$errors["invalidSku"];
 
     //Check if name pattern is valid
     if (checkPattern($name, "name")) {
         $errors["invalidName"] = true;
     }
 
-    // echo "<br> invalidName check " .$errors["invalidName"];
-
     //Check if price is float and greater than or equal zero
     if(isFloat($price)) {
         $errors["invalidPrice"] = true;
     }
-    // echo "<br> <br>price -> ". $price;
-    // echo "<br> invalidPrice check " .$errors["invalidPrice"]."<br><br>";
     
     //Check if type-specific attribute(s) value(s) is float and greater than or equal zero
     if (isFloat($attribute)) {
         $errors["invalidAttribute"] = true;
     }
-    // echo "<br> attribute -> ". $attribute;
-    // echo "<br> #### invalidAttribute check is " .$errors["invalidAttribute"]."<br><br>";
     
     $errorFlag = checkErrorsArray( $errors);
-
-    $errorFlag = false;
-    foreach ($errors as $key => $value) {
-        if ($value === true ) {
-            $errorFlag = true;
-            echo "<br> Error Values -> " .$key." -> ".$value;
-            break;
-        }
-    }
-    // echo "<br> errors flag is ". $errorFlag;
     
     // Check if there are any errors 
     if (!$errorFlag) {
-        // echo "<br> in product init condition";
         //Initialization the ProductController to add product 
         $newProduct = new ProductController();
-
-        // echo "<br> after creating new product";
         //Check if SKU is duplicated
         $errors["skuExisting"] = $newProduct->skuExists($SKU);
-
-        // echo "<br> sku in db check ".$errors["skuExisting"];
         $errorFlag = checkErrorsArray( $errors);
 
         // Recheck if there are any errors 
         if (!$errorFlag){
-            // echo "<br> in second error check condition ";
-
-            //Save submission success or failure status to use for redirection in Ajax
-            // $submitFlag = ($newProduct->addProduct($SKU, $name, $price, $type, $attribute));
-            // echo "<br> after submit flag and flag  -> ".$submitFlag;
-
             //Executing the add product
             $newProduct->addProduct($SKU, $name, $price, $type, $attribute);
+            //Save submission success or failure status to use for redirection in Ajax
             $submitFlag= true;
-            // echo "<br> after adding product to new product";
-
         }
     } 
-
-    // echo "<br> Error Values Errors array   ";
-    // foreach ($errors as $key => $value) {
-    //     if ($value === true ) {
-            
-    //         echo "<br> Error Values -> " .$key." -> ".$value;
-            
-    //     }
-    // }
 }
 ?>
-<!-- <script>
-     var emptyError = "<?php //echo $errors["emptyError"]; ?>"
-    var skuExisting = "<?php //echo $errors["skuExisting"]; ?>"
-    alert(emptyError);
-    alert(skuExisting);
-</script> -->
+
 
 <script> 
     //Ajax script to return errors if found
@@ -245,8 +166,6 @@ if ((isset($_POST['save']))) {
     var invalidAttribute = "<?php echo $errors["invalidAttribute"]; ?>"
     var submitFlag = "<?php echo $submitFlag; ?>"
 
-    // alert(emptyError);
-
     if (emptyError == true ) {
 
         $("#sku, #name, #productType, #price, .attributes").addClass("inputError");
@@ -256,13 +175,11 @@ if ((isset($_POST['save']))) {
     } else if (emptyError != true){
         
         if (invalidSKU == true){
-            // alert("sku invalid");
             $("#sku").addClass("inputError");
             $("#skuErrorMsg").append("<?php echo "SKU should be minimum of 8 characters of letters or number only." ?>");
         }
         
         if (skuExisting == true){
-            // alert("sku in db");
             $("#sku").addClass("inputError");
             $("#skuErrorMsg").append("<?php echo "This SKU is duplicated." ?>");
         }
@@ -287,9 +204,4 @@ if ((isset($_POST['save']))) {
             $(".errorMessage").addClass("errorFormat");
         }
     }
-
-    // if(submitFlag){
-    //     $("#sku, #name, #productType, #price, .detail").val("");
-    // }
-
 </script>
