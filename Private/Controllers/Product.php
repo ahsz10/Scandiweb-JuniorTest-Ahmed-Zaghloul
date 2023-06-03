@@ -93,9 +93,22 @@
                 echo "<br> falid Insert in parent table";
             }
             
+            $indexSql ="SELECT MAX(id) FROM products";
+            $index = $this->connectDB()->prepare($indexSql);
+            $index->execute();
+
+            // // Fetch the result
+            // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // // Access the maximum id value
+            // $max_id = $result['MAX(id)'];
+
+            $lastIndex = $index->fetchColumn();
+
             // return self::$pdo->lastInsertId();
             echo '<br><strong>in save product and the last id is ->>>>>>>>>>>>>>>>> </strong>'.$this->connectDB()->lastInsertId().'        ';
-            return $this->connectDB()->lastInsertId();
+            // return $this->connectDB()->lastInsertId();
+            return $lastIndex;
         }
         // Abstract method to insert new product attributes to the database 
         abstract protected function saveProductAttributes($id);

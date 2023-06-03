@@ -21,15 +21,19 @@
         // Method to insert new DVD attributes to the database 
         protected function saveProductAttributes($id){
             $sql0 ="SELECT MAX(id) FROM products";
-            $stmt = $this->connectDB()->prepare("SELECT MAX(id) FROM products");
+            $stmt = $this->connectDB()->prepare($sql0);
             $stmt->execute();
 
-            // Fetch the result
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            // // Fetch the result
+            // $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            // Access the maximum id value
-            $max_id = $result['MAX(id)'];
-            echo "<br>the sql result in table products is ".$result."<br>";
+            // // Access the maximum id value
+            // $max_id = $result['MAX(id)'];
+
+            $max_id = $stmt->fetchColumn();
+
+
+            // echo "<br>the sql result in table products is ".$result."<br>";
             echo "<br>the sql max index in table products is ".$max_id."<br>";
             echo "<br>the last index in table products from dvd ".$this->connectDB()->lastInsertId()."<br>";
             
